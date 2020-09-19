@@ -13,8 +13,8 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    //todo add
-    //private UnitOfMeasure uof;
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitOfMeasure uof;
 
     @ManyToOne
     private Recipe recipe;
