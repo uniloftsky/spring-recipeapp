@@ -5,8 +5,8 @@ import uniloft.springframework.springrecipeapp.model.UnitOfMeasure;
 
 import java.util.Optional;
 
-public interface UofRepository extends CrudRepository<UnitOfMeasure, Long> {
+public interface UomRepository extends CrudRepository<UnitOfMeasure, Long> {
 
-    Optional<UnitOfMeasure> findByUof(String uof);
+    Optional<UnitOfMeasure> findByUom(String uom);
 
 }
