@@ -37,10 +37,14 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
-    public Recipe addIngredient(Ingredient ingredient) {
+    public void setNotes(Notes notes) {
+        notes.setRecipe(this);
+        this.notes = notes;
+    }
+
+    public void addIngredient(Ingredient ingredient) {
         ingredient.setRecipe(this);
-        this.ingredients.add(ingredient);
-        return this;
+        this.getIngredients().add(ingredient);
     }
 
     public Long getId() {
@@ -133,10 +137,6 @@ public class Recipe {
 
     public Notes getNotes() {
         return notes;
-    }
-
-    public void setNotes(Notes notes) {
-        this.notes = notes;
     }
 
     public Set<Category> getCategories() {
