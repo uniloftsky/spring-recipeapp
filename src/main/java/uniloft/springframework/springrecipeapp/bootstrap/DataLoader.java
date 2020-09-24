@@ -1,5 +1,6 @@
 package uniloft.springframework.springrecipeapp.bootstrap;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -8,11 +9,13 @@ import uniloft.springframework.springrecipeapp.repositories.CategoryRepository;
 import uniloft.springframework.springrecipeapp.repositories.RecipeRepository;
 import uniloft.springframework.springrecipeapp.repositories.UomRepository;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -27,7 +30,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        log.debug("Data has been loaded");
         recipeRepository.saveAll(getRecipes());
     }
 
