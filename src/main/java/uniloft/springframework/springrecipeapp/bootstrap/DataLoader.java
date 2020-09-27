@@ -105,6 +105,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         guacRecipe.addIngredient(new Ingredient("freshly grated black pepper", new BigDecimal(1), ounce));
         guacRecipe.addIngredient(new Ingredient("red radishes or jicama, to garnish", new BigDecimal(1), ounce));
         guacRecipe.addIngredient(new Ingredient("tortilla chips, to serve", new BigDecimal(1), pinch));
+        guacRecipe.setDescription("Guac recipe!");
 
         recipes.add(guacRecipe);
 
@@ -150,6 +151,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         tacosRecipe.addIngredient(new Ingredient("Roughly chopped cilantro", new BigDecimal(1), ounce));
         tacosRecipe.addIngredient(new Ingredient("sour cream thinned with 1/4 cup milk", new BigDecimal(".5"), cup));
         tacosRecipe.addIngredient(new Ingredient("lime, cut into wedges", new BigDecimal(1), ounce));
+        tacosRecipe.setDescription("Tacos recipe!");
 
         recipes.add(tacosRecipe);
 
