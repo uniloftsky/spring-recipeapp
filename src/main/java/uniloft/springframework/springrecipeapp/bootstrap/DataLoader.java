@@ -96,6 +96,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
         guacRecipe.setNotes(guacNotes);
         guacRecipe.getCategories().add(americanCategory);
+        guacRecipe.getCategories().add(mexicanCategory);
         guacRecipe.addIngredient(new Ingredient("ripe avocados", new BigDecimal(1), ounce));
         guacRecipe.addIngredient(new Ingredient("salt, more to taste", new BigDecimal(".25"), spoon));
         guacRecipe.addIngredient(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(1), table));

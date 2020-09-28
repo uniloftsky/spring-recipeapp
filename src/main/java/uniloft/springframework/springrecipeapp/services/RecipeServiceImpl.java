@@ -2,7 +2,10 @@ package uniloft.springframework.springrecipeapp.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import uniloft.springframework.springrecipeapp.model.Category;
+import uniloft.springframework.springrecipeapp.model.Ingredient;
 import uniloft.springframework.springrecipeapp.model.Recipe;
+import uniloft.springframework.springrecipeapp.repositories.CategoryRepository;
 import uniloft.springframework.springrecipeapp.repositories.RecipeRepository;
 
 import java.util.HashSet;
@@ -14,9 +17,11 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final CategoryRepository categoryRepository;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, CategoryRepository categoryRepository) {
         this.recipeRepository = recipeRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -34,5 +39,15 @@ public class RecipeServiceImpl implements RecipeService {
             throw new RuntimeException("Expected recipe not found");
         }
         return recipeOptional.get();
+    }
+
+    @Override
+    public Set<Category> getRecipeCategories(Long id) {
+        return new HashSet<>(findById(id).getCategories());
+    }
+
+    @Override
+    public Set<Ingredient> getRecipeIngredients(Long id) {
+        return new HashSet<>(findById(id).getIngredients());
     }
 }
