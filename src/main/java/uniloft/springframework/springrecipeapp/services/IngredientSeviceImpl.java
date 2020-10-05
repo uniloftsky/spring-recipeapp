@@ -78,5 +78,26 @@ public class IngredientSeviceImpl implements IngredientSevice {
 
             return savedIngredientOptional.get();
         }
+
+    }
+
+    @Override
+    public void delete(Ingredient ingredient) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(ingredient.getRecipe().getId());
+
+        if(recipeOptional.isEmpty()) {
+            throw new RuntimeException("ERROR");
+        } else {
+            Recipe recipe = recipeOptional.get();
+            Optional<Ingredient> ingredientOptional = recipe.getIngredients().stream().filter(ingredient1 -> ingredient1.getId().equals(ingredient.getId())).findFirst();
+            if(ingredientOptional.isEmpty()) {
+                throw new RuntimeException("Expected ingredient not found!");
+            } else {
+                Ingredient ingredientToDelete = ingredientOptional.get();
+                ingredientToDelete.setRecipe(null);
+                recipe.getIngredients().remove(ingredient);
+            }
+            recipeRepository.save(recipe);
+        }
     }
 }
